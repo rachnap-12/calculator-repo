@@ -6,9 +6,25 @@ const allClearButton = document.getElementById('all-clear')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
-numberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        
-    })
-})
+const resultDisplayed = false; 
+
+// numberButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+
+//     })
+// })
+
+//click handlers for number buttons
+for (const i=0; i<numberButtons.length; i++){
+    numberButtons[i].addEventListener('click', () => {
+
+        // const currentOperand = 
+
+        //keep adding
+        if (resultDisplayed === false) {
+
+        }
+
+    }
+}
  
