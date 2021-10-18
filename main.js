@@ -1,13 +1,19 @@
-const input = document.getElementById('input');
-const numberButtons = document.querySelectorAll('number');
-const operationButtons = document.querySelectorAll('operation')
-const equalsButton = document.getElementById('equal-button');
+let input = document.getElementById('input');
+console.log(input);
+const numberButtons = document.querySelectorAll('.numberB');
+// const numberButtons = document.querySelectorAll('.number');
+console.log(numberButtons[0]);
+const operationButtons = document.querySelectorAll('.operation')
+console.log(operationButtons[0]);
+// let equalsButton = document.getElementById('.number equal');
+let equalsButton = document.getElementById('equal');
+console.log(equalsButton);
 // const deleteButton = document.getElementById('del-button');
-const allClearButton = document.getElementById('all-clear')
+const allClearButton = document.getElementById('clear')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
-const resultDisplayed = false; 
+let resultDisplayed = false; 
 
 // numberButtons.forEach(button => {
 //     button.addEventListener('click', () => {
@@ -16,11 +22,13 @@ const resultDisplayed = false;
 // })
 
 //click handlers for number buttons
-for (const i=0; i<numberButtons.length; i++){
+for (let i=0; i < numberButtons.length; i++){
     numberButtons[i].addEventListener('click', (event) => {
 
         const currentValue = input.innerHTML;
         const operator = currentValue[currentValue.length-1];
+        console.log(currentValue);
+        console.log(currentValue);
 
         // const currentOperand = 
 
@@ -42,8 +50,8 @@ for (const i=0; i<numberButtons.length; i++){
 
 
  //click handler for operators
- for(const i=0 ; i < operationButtons.length; i++){
-     operationButtons.addEventListener('click',(event) => {
+ for(let i=0 ; i < operationButtons.length; i++){
+     operationButtons[i].addEventListener('click',(event) => {
 
         const currentValue = input.innerHTML;
         const opr = currentValue[currentValue.length-1];
@@ -59,3 +67,58 @@ for (const i=0; i<numberButtons.length; i++){
 
         });
         }
+
+        //click handler for equal button
+        equalsButton.addEventListener('click',() => {
+            let inputValue = input.innerHTML;
+
+            let numbers = inputValue.split(/\+|\-|\*|\÷/g);
+            let operators = inputValue.replace(/[0-9]|\./g, "").split("");
+            
+            console.log("##############")
+            console.log(inputValue);
+ 
+            console.log(numbers);
+
+        let divide = operators.indexOf("÷");
+      while (divide != -1) {
+    numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+    operators.splice(divide, 1);
+    divide = operators.indexOf("÷");
+  }
+
+  var multiply = operators.indexOf("×");
+  while (multiply != -1) {
+    numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+    operators.splice(multiply, 1);
+    multiply = operators.indexOf("×");
+  }
+
+  var subtract = operators.indexOf("-");
+  while (subtract != -1) {
+    numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+    operators.splice(subtract, 1);
+    subtract = operators.indexOf("-");
+  }
+
+  var add = operators.indexOf("+");
+  while (add != -1) {
+    // using parseFloat is necessary, otherwise it will result in string concatenation :)
+    numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+    operators.splice(add, 1);
+    add = operators.indexOf("+");
+  }
+    input.innerHTML = numbers[0];
+
+    resultDisplayed = true;
+  
+  });
+
+  //
+  allClearButton.addEventListener("click", function() {
+      input.innerHTML="";
+  })
+  
+
+
+    

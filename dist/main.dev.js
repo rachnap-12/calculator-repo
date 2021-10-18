@@ -1,13 +1,17 @@
 "use strict";
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 var input = document.getElementById('input');
-var numberButtons = document.querySelectorAll('number');
-var operationButtons = document.querySelectorAll('operation');
-var equalsButton = document.getElementById('equal-button'); // const deleteButton = document.getElementById('del-button');
+console.log(input);
+var numberButtons = document.querySelectorAll('.numberB'); // const numberButtons = document.querySelectorAll('.number');
 
-var allClearButton = document.getElementById('all-clear');
+console.log(numberButtons[0]);
+var operationButtons = document.querySelectorAll('.operation');
+console.log(operationButtons[0]); // let equalsButton = document.getElementById('.number equal');
+
+var equalsButton = document.getElementById('equal');
+console.log(equalsButton); // const deleteButton = document.getElementById('del-button');
+
+var allClearButton = document.getElementById('clear');
 var previousOperandTextElement = document.querySelector('[data-previous-operand]');
 var currentOperandTextElement = document.querySelector('[data-current-operand]');
 var resultDisplayed = false; // numberButtons.forEach(button => {
@@ -16,10 +20,12 @@ var resultDisplayed = false; // numberButtons.forEach(button => {
 // })
 //click handlers for number buttons
 
-for (var i = 0; i < numberButtons.length; _readOnlyError("i"), i++) {
+for (var i = 0; i < numberButtons.length; i++) {
   numberButtons[i].addEventListener('click', function (event) {
     var currentValue = input.innerHTML;
-    var operator = currentValue[currentValue.length - 1]; // const currentOperand = 
+    var operator = currentValue[currentValue.length - 1];
+    console.log(currentValue);
+    console.log(currentValue); // const currentOperand = 
     //keep adding
 
     if (resultDisplayed === false) {
@@ -35,8 +41,8 @@ for (var i = 0; i < numberButtons.length; _readOnlyError("i"), i++) {
 } //click handler for operators
 
 
-for (var _i = 0; _i < operationButtons.length; _readOnlyError("i"), _i++) {
-  operationButtons.addEventListener('click', function (event) {
+for (var _i = 0; _i < operationButtons.length; _i++) {
+  operationButtons[_i].addEventListener('click', function (event) {
     var currentValue = input.innerHTML;
     var opr = currentValue[currentValue.length - 1];
 
@@ -49,4 +55,53 @@ for (var _i = 0; _i < operationButtons.length; _readOnlyError("i"), _i++) {
       input.innerHTML += event.target.innerHTML;
     }
   });
-}
+} //click handler for equal button
+
+
+equalsButton.addEventListener('click', function () {
+  var inputValue = input.innerHTML;
+  var numbers = inputValue.split(/\+|\-|\*|\÷/g);
+  var operators = inputValue.replace(/[0-9]|\./g, "").split("");
+  console.log("##############");
+  console.log(inputValue);
+  console.log(numbers);
+  var divide = operators.indexOf("÷");
+
+  while (divide != -1) {
+    numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+    operators.splice(divide, 1);
+    divide = operators.indexOf("÷");
+  }
+
+  var multiply = operators.indexOf("×");
+
+  while (multiply != -1) {
+    numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+    operators.splice(multiply, 1);
+    multiply = operators.indexOf("×");
+  }
+
+  var subtract = operators.indexOf("-");
+
+  while (subtract != -1) {
+    numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+    operators.splice(subtract, 1);
+    subtract = operators.indexOf("-");
+  }
+
+  var add = operators.indexOf("+");
+
+  while (add != -1) {
+    // using parseFloat is necessary, otherwise it will result in string concatenation :)
+    numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+    operators.splice(add, 1);
+    add = operators.indexOf("+");
+  }
+
+  input.innerHTML = numbers[0];
+  resultDisplayed = true;
+}); //
+
+allClearButton.addEventListener("click", function () {
+  input.innerHTML = "";
+});
