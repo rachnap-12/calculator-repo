@@ -1,19 +1,16 @@
 "use strict";
 
-var input = document.getElementById('input');
-console.log(input);
-var numberButtons = document.querySelectorAll('.numberB'); // const numberButtons = document.querySelectorAll('.number');
+var input = document.getElementById('input'); // let input = document.querySelectorAll('.input');
 
+console.log(input);
+var numberButtons = document.querySelectorAll('.numberB');
 console.log(numberButtons[0]);
 var operationButtons = document.querySelectorAll('.operation');
-console.log(operationButtons[0]); // let equalsButton = document.getElementById('.number equal');
-
+console.log(operationButtons[0]);
 var equalsButton = document.getElementById('equal');
 console.log(equalsButton); // const deleteButton = document.getElementById('del-button');
 
 var allClearButton = document.getElementById('clear');
-var previousOperandTextElement = document.querySelector('[data-previous-operand]');
-var currentOperandTextElement = document.querySelector('[data-current-operand]');
 var resultDisplayed = false; //click handlers for number buttons
 
 for (var i = 0; i < numberButtons.length; i++) {
@@ -21,15 +18,14 @@ for (var i = 0; i < numberButtons.length; i++) {
     var currentValue = input.innerHTML;
     var operator = currentValue[currentValue.length - 1];
     console.log(currentValue);
-    console.log(operator); // const currentOperand = 
-    //keep adding
+    console.log(operator); //keep adding
 
     if (resultDisplayed === false) {
-      input.innerHTML += event.target.innerHTML; ///required???????
+      input.innerHTML += event.target.innerHTML;
     } else if (resultDisplayed === true && operator === "+" || operator === "-" || operator === "×" || operator === "÷" || operator === "%") {
       input.innerHTML += event.target.innerHTML;
     } else {
-      // resultDisplayed = false;
+      resultDisplayed = false;
       input.innerHTML = "";
       input.innerHTML += event.target.innerHTML;
     }
@@ -44,7 +40,8 @@ for (var _i = 0; _i < operationButtons.length; _i++) {
 
     if (opr === '+' || opr === '-' || opr === '×' || opr === '÷' || opr === '%') {
       // const newStr = currentValue. 
-      input.innerHTML = currentValue;
+      var newString = currentValue.substring(0, currentValue.length - 1) + event.target.innerHTML;
+      input.innerHTML = newString;
     } else if (currentValue.length == 0) {
       console.log("Enter a number first");
     } else {
@@ -89,7 +86,7 @@ equalsButton.addEventListener('click', function () {
   var add = operators.indexOf("+");
 
   while (add != -1) {
-    // using parseFloat is necessary, otherwise it will result in string concatenation :)
+    // using parseFloat is necessary, otherwise it will result in string concatenation
     numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
     console.log(numbers);
     operators.splice(add, 1);
@@ -101,7 +98,6 @@ equalsButton.addEventListener('click', function () {
   var percent = operators.indexOf("%");
 
   while (percent != -1) {
-    // using parseFloat is necessary, otherwise it will result in string concatenation :)
     numbers.splice(percent, 2, numbers[percent] / 100 * numbers[percent + 1]);
     console.log(numbers);
     operators.splice(percent, 1);

@@ -1,5 +1,6 @@
 body {
     width: 220px;
+    // height: 100px;
     margin: 100px auto;
     font-size: 1.8rem;
   }
@@ -71,3 +72,9 @@ body {
 .operations{
     font-weight: bold;
 }
+
+// @media only screen and (min-width: 1044px) {
+//  .calculator-grid{
+//     width:100px;
+//     }
+//   }

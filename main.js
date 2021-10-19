@@ -1,17 +1,15 @@
 let input = document.getElementById('input');
+// let input = document.querySelectorAll('.input');
 console.log(input);
 const numberButtons = document.querySelectorAll('.numberB');
-// const numberButtons = document.querySelectorAll('.number');
 console.log(numberButtons[0]);
 const operationButtons = document.querySelectorAll('.operation')
 console.log(operationButtons[0]);
-// let equalsButton = document.getElementById('.number equal');
 let equalsButton = document.getElementById('equal');
 console.log(equalsButton);
 // const deleteButton = document.getElementById('del-button');
 const allClearButton = document.getElementById('clear')
-const previousOperandTextElement = document.querySelector('[data-previous-operand]')
-const currentOperandTextElement = document.querySelector('[data-current-operand]')
+
 
 let resultDisplayed = false; 
 
@@ -24,17 +22,14 @@ for (let i=0; i < numberButtons.length; i++){
         console.log(currentValue);
         console.log(operator);
 
-        // const currentOperand = 
 
         //keep adding
         if (resultDisplayed === false) {
             input.innerHTML += event.target.innerHTML;
-
-            ///required???????
         }else if (resultDisplayed === true && operator === "+" || operator === "-" || operator === "×" || operator === "÷" || operator === "%") {
             input.innerHTML += event.target.innerHTML;
         } else{
-            // resultDisplayed = false;
+            resultDisplayed = false;
             input.innerHTML = "";
             input.innerHTML += event.target.innerHTML;
         }
@@ -47,12 +42,13 @@ for (let i=0; i < numberButtons.length; i++){
  for(let i=0 ; i < operationButtons.length; i++){
      operationButtons[i].addEventListener('click',(event) => {
 
-        const currentValue = input.innerHTML;
-        const opr = currentValue[currentValue.length-1];
+        let currentValue = input.innerHTML;
+        let opr = currentValue[currentValue.length-1];
         
         if(opr === '+' || opr === '-' || opr === '×' || opr === '÷' || opr === '%' ) {
             // const newStr = currentValue. 
-            input.innerHTML = currentValue;
+            let newString = currentValue.substring(0, currentValue.length - 1) + event.target.innerHTML;
+            input.innerHTML = newString;
          }else if(currentValue.length == 0){
             console.log("Enter a number first");
          }else {
@@ -62,61 +58,59 @@ for (let i=0; i < numberButtons.length; i++){
         });
         }
 
-        //click handler for equal button
-        equalsButton.addEventListener('click',() => {
-            let inputValue = input.innerHTML;
-
-            let numbers = inputValue.split(/\+|\-|\×|\÷|\%/g);
-            let operators = inputValue.replace(/[0-9]|\./g, "").split("");
+    //click handler for equal button
+    equalsButton.addEventListener('click',() => {
+      let inputValue = input.innerHTML;
+      let numbers = inputValue.split(/\+|\-|\×|\÷|\%/g);
+      let operators = inputValue.replace(/[0-9]|\./g, "").split("");
             
-            console.log("##############")
-            console.log(inputValue);
+      console.log("##############")
+      console.log(inputValue);
  
-            console.log(numbers);
-            console.log(operators);
+      console.log(numbers);
+      console.log(operators);
 
-        let divide = operators.indexOf("÷");
-      while (divide != -1) {
+    let divide = operators.indexOf("÷");
+    while (divide != -1) {
     numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
     operators.splice(divide, 1);
     divide = operators.indexOf("÷");
-  }
+    }
 
-  var multiply = operators.indexOf("×");
-  while (multiply != -1) {
+    let multiply = operators.indexOf("×");
+    while (multiply != -1) {
     numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
     operators.splice(multiply, 1);
     multiply = operators.indexOf("×");
-  }
+    }
 
-  var subtract = operators.indexOf("-");
-  while (subtract != -1) {
+    let subtract = operators.indexOf("-");
+    while (subtract != -1) {
     numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
     operators.splice(subtract, 1);
     subtract = operators.indexOf("-");
-  }
+    }
 
-  var add = operators.indexOf("+");
-  while (add != -1) {
-    // using parseFloat is necessary, otherwise it will result in string concatenation :)
+    let add = operators.indexOf("+");
+    while (add != -1) {
+    // using parseFloat is necessary, otherwise it will result in string concatenation
     numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
     console.log(numbers);
     operators.splice(add, 1);
     console.log(numbers);
     add = operators.indexOf("+");
     console.log(add);
-  }
+    }
 
-  var percent = operators.indexOf("%");
-  while (percent != -1) {
-    // using parseFloat is necessary, otherwise it will result in string concatenation :)
-    numbers.splice(percent, 2, (numbers[percent] / 100) * (numbers[percent + 1]));
-    console.log(numbers);
-    operators.splice(percent, 1);
-    console.log(operators);
-    percent = operators.indexOf("%");
-    console.log(percent);
-  }
+   let percent = operators.indexOf("%");
+   while (percent != -1) {
+   numbers.splice(percent, 2, (numbers[percent] / 100) * (numbers[percent + 1]));
+   console.log(numbers);
+   operators.splice(percent, 1);
+   console.log(operators);
+   percent = operators.indexOf("%");
+   console.log(percent);
+   }
 
     input.innerHTML = numbers[0];
 
