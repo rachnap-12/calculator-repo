@@ -15,20 +15,14 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 let resultDisplayed = false; 
 
-// numberButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-
-//     })
-// })
-
 //click handlers for number buttons
 for (let i=0; i < numberButtons.length; i++){
     numberButtons[i].addEventListener('click', (event) => {
 
-        const currentValue = input.innerHTML;
-        const operator = currentValue[currentValue.length-1];
+        let currentValue = input.innerHTML;
+        let operator = currentValue[currentValue.length-1];
         console.log(currentValue);
-        console.log(currentValue);
+        console.log(operator);
 
         // const currentOperand = 
 
@@ -37,7 +31,7 @@ for (let i=0; i < numberButtons.length; i++){
             input.innerHTML += event.target.innerHTML;
 
             ///required???????
-        }else if (resultDisplayed === true && operator === "+" || operator === "-" || operator === "×" || operator === "÷") {
+        }else if (resultDisplayed === true && operator === "+" || operator === "-" || operator === "×" || operator === "÷" || operator === "%") {
             input.innerHTML += event.target.innerHTML;
         } else{
             // resultDisplayed = false;
@@ -56,7 +50,7 @@ for (let i=0; i < numberButtons.length; i++){
         const currentValue = input.innerHTML;
         const opr = currentValue[currentValue.length-1];
         
-        if(opr === '+' || opr === '-' || opr === '*' || opr === '÷') {
+        if(opr === '+' || opr === '-' || opr === '×' || opr === '÷' || opr === '%' ) {
             // const newStr = currentValue. 
             input.innerHTML = currentValue;
          }else if(currentValue.length == 0){
@@ -72,13 +66,14 @@ for (let i=0; i < numberButtons.length; i++){
         equalsButton.addEventListener('click',() => {
             let inputValue = input.innerHTML;
 
-            let numbers = inputValue.split(/\+|\-|\*|\÷/g);
+            let numbers = inputValue.split(/\+|\-|\×|\÷|\%/g);
             let operators = inputValue.replace(/[0-9]|\./g, "").split("");
             
             console.log("##############")
             console.log(inputValue);
  
             console.log(numbers);
+            console.log(operators);
 
         let divide = operators.indexOf("÷");
       while (divide != -1) {
@@ -105,9 +100,24 @@ for (let i=0; i < numberButtons.length; i++){
   while (add != -1) {
     // using parseFloat is necessary, otherwise it will result in string concatenation :)
     numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+    console.log(numbers);
     operators.splice(add, 1);
+    console.log(numbers);
     add = operators.indexOf("+");
+    console.log(add);
   }
+
+  var percent = operators.indexOf("%");
+  while (percent != -1) {
+    // using parseFloat is necessary, otherwise it will result in string concatenation :)
+    numbers.splice(percent, 2, (numbers[percent] / 100) * (numbers[percent + 1]));
+    console.log(numbers);
+    operators.splice(percent, 1);
+    console.log(operators);
+    percent = operators.indexOf("%");
+    console.log(percent);
+  }
+
     input.innerHTML = numbers[0];
 
     resultDisplayed = true;
