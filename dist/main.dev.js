@@ -1,15 +1,13 @@
 "use strict";
 
-var input = document.getElementById('input'); // let input = document.querySelectorAll('.input');
-
+var input = document.getElementById('input');
 console.log(input);
 var numberButtons = document.querySelectorAll('.numberB');
 console.log(numberButtons[0]);
 var operationButtons = document.querySelectorAll('.operation');
 console.log(operationButtons[0]);
 var equalsButton = document.getElementById('equal');
-console.log(equalsButton); // const deleteButton = document.getElementById('del-button');
-
+console.log(equalsButton);
 var allClearButton = document.getElementById('clear');
 var resultDisplayed = false; //click handlers for number buttons
 
@@ -43,6 +41,7 @@ for (var _i = 0; _i < operationButtons.length; _i++) {
       var newString = currentValue.substring(0, currentValue.length - 1) + event.target.innerHTML;
       input.innerHTML = newString;
     } else if (currentValue.length == 0) {
+      alert("Enter a number first");
       console.log("Enter a number first");
     } else {
       input.innerHTML += event.target.innerHTML;
@@ -58,7 +57,8 @@ equalsButton.addEventListener('click', function () {
   console.log("##############");
   console.log(inputValue);
   console.log(numbers);
-  console.log(operators);
+  console.log(operators); //code for arthimetic operations
+
   var divide = operators.indexOf("÷");
 
   while (divide != -1) {
@@ -101,14 +101,20 @@ equalsButton.addEventListener('click', function () {
     numbers.splice(percent, 2, numbers[percent] / 100 * numbers[percent + 1]);
     console.log(numbers);
     operators.splice(percent, 1);
-    console.log(operators);
+    console.log(numbers);
     percent = operators.indexOf("%");
     console.log(percent);
   }
 
+  if (input.innerHTML.length > 10) {
+    console.log("length is" + input.innerHTML.length);
+    input.style.fontSize = "15px";
+    input.innerHTML = numbers[0];
+  }
+
   input.innerHTML = numbers[0];
   resultDisplayed = true;
-}); //
+}); //Clear button
 
 allClearButton.addEventListener("click", function () {
   input.innerHTML = "";
