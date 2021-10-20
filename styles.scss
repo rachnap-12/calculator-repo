@@ -1,3 +1,5 @@
+@use 'styles/base/abstracts.scss' as *;
+
 body {
     width: 220px;
     // height: 100px;
@@ -14,49 +16,51 @@ body {
 .input {
     height: 60px;
     padding-right: 15px;
-    padding-top: 10px;
+    padding-top: $padding;
     text-align: right;
     margin-right: 6px;
-    color: white;
+    color:$color;
     // font-size: 2.5rem;
   }
   
 #clear{
-    border-radius: 50%;
+    border-radius: $border-radius;
 }
 
 .number > .operation{
     background-color: orange;
-    border: 2px solid orange;
+    border-width: 0;
     width: 30px;
 }
 
 .number button {
-    border-radius: 50%;
-    text-align: center;
-    background-color: grey;
-    color: white;
-    padding: 10px;
-    margin: 12px 6px 1px 0;
-    font-weight: bold;
-    border: 2px solid gray;
+    border-radius: $border-radius;
+    text-align: $text-align;
+    background-color: $background-color;
+    color: $color;
+    padding: $padding;
+    margin: $margin;
+    font-weight: $font-weight;
+    border: $border;
+    cursor: $cursor;
 
 }
 
 .extra button{
-        border-radius: 50%;
-        text-align: center;
-        background-color: grey;
-        color: white;
-        padding: 10px;
-        margin: 12px 6px 1px 0;
-        font-weight: bold;
-        border: 2px solid gray;
+        border-radius: $border-radius;
+        text-align: $text-align;
+        background-color: $background-color;
+        color: $color;
+        padding: $padding;
+        margin: $margin;
+        font-weight: $font-weight;
+        border: $border;
+        cursor: $cursor;
     
 }
 
 #per{
-    text-align: center;
+    text-align: $text-align;
     width:31px;
     height:40px;
 }
@@ -66,11 +70,11 @@ body {
   width: 78px;
   border-radius: 20px;
   text-align:left;
-  border: 2px solid gray;
+  border: $border;
 }
 
 .operations{
-    font-weight: bold;
+    font-weight: $font-weight;
 }
 
 // @media only screen and (min-width: 1044px) {

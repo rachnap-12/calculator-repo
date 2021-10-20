@@ -41,7 +41,7 @@ for (let i=0; i < numberButtons.length; i++){
  //click handler for operators
  for(let i=0 ; i < operationButtons.length; i++){
      operationButtons[i].addEventListener('click',(event) => {
-
+      
         let currentValue = input.innerHTML;
         let opr = currentValue[currentValue.length-1];
         
@@ -107,19 +107,24 @@ for (let i=0; i < numberButtons.length; i++){
    numbers.splice(percent, 2, (numbers[percent] / 100) * (numbers[percent + 1]));
    console.log(numbers);
    operators.splice(percent, 1);
-   console.log(operators);
+   console.log(numbers);
+   
    percent = operators.indexOf("%");
    console.log(percent);
    }
 
+   if(input.innerHTML.length > 10) {
+       console.log("length is" + input.innerHTML.length);
+    input.style.fontSize="15px";
     input.innerHTML = numbers[0];
-
+   }
+   input.innerHTML = numbers[0];
     resultDisplayed = true;
   
   });
 
   //
-  allClearButton.addEventListener("click", function() {
+  allClearButton.addEventListener("click",() => {
       input.innerHTML="";
   })
   
