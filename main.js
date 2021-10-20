@@ -1,5 +1,4 @@
 let input = document.getElementById('input');
-// let input = document.querySelectorAll('.input');
 console.log(input);
 const numberButtons = document.querySelectorAll('.numberB');
 console.log(numberButtons[0]);
@@ -7,7 +6,7 @@ const operationButtons = document.querySelectorAll('.operation')
 console.log(operationButtons[0]);
 let equalsButton = document.getElementById('equal');
 console.log(equalsButton);
-// const deleteButton = document.getElementById('del-button');
+
 const allClearButton = document.getElementById('clear')
 
 
