@@ -6,7 +6,7 @@ body {
 }
 
 .calculator-grid {
-  padding: 20px;
+  padding: 25px;
   border-radius: 5px;
   background-color: black;
 }
@@ -20,11 +20,14 @@ body {
   color: white;
 }
 
-#clear {
-  border-radius: 50%;
+.number > .operation {
+  background-color: orange;
+  border-width: 0;
+  width: 30px;
+  font-weight: bold;
 }
 
-.number > .operation {
+#equal {
   background-color: orange;
   border-width: 0;
   width: 30px;
@@ -44,20 +47,20 @@ body {
 
 .extra button {
   border-radius: 50%;
+  border-width: 0;
   text-align: center;
   background-color: grey;
   color: white;
   padding: 10px;
   margin: 12px 6px 1px 0;
   font-weight: bold;
-  border: 2px solid gray;
   cursor: pointer;
 }
 
-#per {
-  text-align: center;
-  width: 31px;
-  height: 40px;
+.extra > #operation {
+  background-color: orange;
+  border-width: 0;
+  width: 30px;
 }
 
 .number > #zero {
@@ -66,8 +69,4 @@ body {
   border-radius: 20px;
   text-align: left;
   border: 2px solid gray;
-}
-
-.operations {
-  font-weight: bold;
 }

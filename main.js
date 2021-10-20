@@ -50,6 +50,7 @@ for (let i=0; i < numberButtons.length; i++){
             let newString = currentValue.substring(0, currentValue.length - 1) + event.target.innerHTML;
             input.innerHTML = newString;
          }else if(currentValue.length == 0){
+            alert("Enter a number first")
             console.log("Enter a number first");
          }else {
              input.innerHTML += event.target.innerHTML;
@@ -69,7 +70,8 @@ for (let i=0; i < numberButtons.length; i++){
  
       console.log(numbers);
       console.log(operators);
-
+      
+      //code for arthimetic operations
     let divide = operators.indexOf("÷");
     while (divide != -1) {
     numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
@@ -123,7 +125,7 @@ for (let i=0; i < numberButtons.length; i++){
   
   });
 
-  //
+  //Clear button
   allClearButton.addEventListener("click",() => {
       input.innerHTML="";
   })
