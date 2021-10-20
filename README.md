@@ -1,4 +1,4 @@
-# calculator-repo
+# Calculator-Repo
   This is my repo for standard calculator.
 ## Features and Functionalities
 1. It supports basic arithmetic operations using symbols ( + , - , * , ÷ and %).
